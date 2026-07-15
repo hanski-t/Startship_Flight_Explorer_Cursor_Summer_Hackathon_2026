@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace SITEMAP_URL after deploy, or set VITE_SITE_URL and run npm run build
+Sitemap: /sitemap.xml

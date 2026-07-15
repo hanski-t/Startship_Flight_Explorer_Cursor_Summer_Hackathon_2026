@@ -175,6 +175,61 @@ body {
   }
 }
 
+@keyframes travel {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0.9;
+  }
+}
+
+@keyframes marker-ignite {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
 .mission-path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
@@ -223,6 +278,39 @@ body {
   animation: bar-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.traj-rocket {
+  offset-rotate: auto;
+  animation: travel var(--travel-dur, 3.4s) cubic-bezier(0.5, 0, 0.5, 1)
+    var(--travel-delay, 0.2s) both;
+}
+
+.traj-marker {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: marker-ignite 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.traj-label {
+  animation: label-in 0.5s ease-out both;
+}
+
+.traj-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.traj-path-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: mission-path-draw var(--draw-dur, 1.4s)
+    cubic-bezier(0.16, 1, 0.3, 1) var(--draw-delay, 0s) forwards;
+}
+
+.traj-zoom {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mission-path,
   .animate-rocket-float,
@@ -234,15 +322,60 @@ body {
   .animate-rise-in,
   .animate-ping-slow,
   .animate-drift,
-  .animate-bar-grow {
+  .animate-bar-grow,
+  .traj-marker,
+  .traj-label,
+  .traj-pulse,
+  .traj-path-draw {
     animation: none;
   }
 
-  .mission-path {
+  .mission-path,
+  .traj-path-draw {
     stroke-dashoffset: 0;
   }
 
   .animate-bar-grow {
     transform: none;
   }
+
+  .traj-rocket {
+    animation: none;
+    opacity: 0;
+  }
+
+  .traj-zoom {
+    transition: none;
+  }
+}
+
+/* Accessibility: skip link + visible keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  border-radius: 0.375rem;
+  background: var(--color-ink);
+  color: var(--color-void);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--color-ok);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ok);
+  outline-offset: 2px;
+}
+
+#main-content:focus {
+  outline: none;
 }

@@ -2,11 +2,77 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Starship Flight Explorer</title>
+
+    <title>Starship Flight Explorer — IFT Flight Test Timeline</title>
+    <meta
+      name="description"
+      content="Explore every SpaceX Starship integrated flight test from IFT-1 to IFT-13. Interactive timeline with mission maps, stage-by-stage outcomes, and Block 1/2/3 vehicle progression."
+    />
+    <meta
+      name="keywords"
+      content="Starship, SpaceX, IFT, integrated flight test, Super Heavy, flight test timeline, Starbase, booster catch, Starship splashdown, Block 3"
+    />
+    <meta name="author" content="Starship Flight Explorer" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#0a0f1e" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Starship Flight Explorer" />
+    <meta property="og:title" content="Starship Flight Explorer — IFT Flight Test Timeline" />
+    <meta
+      property="og:description"
+      content="Explore every SpaceX Starship integrated flight test from IFT-1 to IFT-13 with interactive mission maps and stage outcomes."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Starship Flight Explorer — integrated flight test timeline" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Starship Flight Explorer — IFT Flight Test Timeline" />
+    <meta
+      name="twitter:description"
+      content="Interactive timeline of SpaceX Starship flight tests IFT-1 through IFT-13."
+    />
+    <meta name="twitter:image" content="/og-image.svg" />
+    <meta name="twitter:image:alt" content="Starship Flight Explorer preview" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
+    <!-- Crawler-friendly fallback (SPA content loads via JS) -->
+    <noscript>
+      <style>
+        .noscript-fallback {
+          font-family: system-ui, sans-serif;
+          max-width: 40rem;
+          margin: 2rem auto;
+          padding: 0 1rem;
+          color: #e2e8f0;
+          background: #0a0f1e;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
+    <noscript>
+      <div class="noscript-fallback">
+        <h1>Starship Flight Explorer</h1>
+        <p>
+          Interactive timeline of SpaceX Starship integrated flight tests (IFT-1
+          through IFT-13): launch, hot staging, booster recovery, reentry, and
+          splashdown outcomes for Block 1, Block 2, and Block 3 vehicles.
+        </p>
+        <p>Enable JavaScript to use the full interactive experience.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

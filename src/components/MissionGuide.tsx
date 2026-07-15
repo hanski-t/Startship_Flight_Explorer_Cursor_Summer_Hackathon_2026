@@ -9,7 +9,7 @@ import { StageIcon } from "../lib/stageIcons";
 import { Panel } from "./Panel";
 
 export function MissionGuide() {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <Panel aria-label="Mission guide">

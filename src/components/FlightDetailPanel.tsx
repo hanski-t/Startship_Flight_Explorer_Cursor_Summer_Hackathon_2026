@@ -10,7 +10,7 @@ import { StageTracker } from "./StageTracker";
 
 interface FlightDetailPanelProps {
   flight: Flight;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export function FlightDetailPanel({ flight, onClose }: FlightDetailPanelProps) {
@@ -56,14 +56,16 @@ export function FlightDetailPanel({ flight, onClose }: FlightDetailPanelProps) {
               </p>
             )}
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-lg p-1.5 text-[color:var(--color-faint)] transition-colors hover:bg-[color:var(--color-panel)] hover:text-[color:var(--color-ink)]"
-            aria-label="Close details"
-          >
-            <X size={18} aria-hidden />
-          </button>
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-lg p-1.5 text-[color:var(--color-faint)] transition-colors hover:bg-[color:var(--color-panel)] hover:text-[color:var(--color-ink)]"
+              aria-label="Close details"
+            >
+              <X size={18} aria-hidden />
+            </button>
+          )}
         </div>
 
         {!isUpcoming && (
