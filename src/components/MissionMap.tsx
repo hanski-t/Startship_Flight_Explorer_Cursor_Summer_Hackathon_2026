@@ -32,12 +32,12 @@ export function MissionMap({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border border-slate-700/60 bg-gradient-to-br from-[#0c1425] via-[#0a1020] to-[#060a14] ${
-        compact ? "h-[120px]" : "min-h-[340px]"
+      className={`relative overflow-hidden border border-[color:var(--color-line)] bg-gradient-to-br from-[#0b0d12] via-[#090b0f] to-[#07080b] ${
+        compact ? "h-[120px] rounded-xl" : "min-h-[340px] rounded-b-2xl"
       }`}
     >
       {!compact && (
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(56,189,248,0.12)_0%,transparent_50%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_82%,rgba(150,165,190,0.08)_0%,transparent_55%)]" />
       )}
 
       <svg
@@ -52,12 +52,12 @@ export function MissionMap({
       >
         <defs>
           <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0f2847" />
-            <stop offset="100%" stopColor="#071018" />
+            <stop offset="0%" stopColor="#12151c" />
+            <stop offset="100%" stopColor="#08090c" />
           </linearGradient>
           <linearGradient id="landGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1a2e1a" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#0f1a0f" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="#20252f" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#12151c" stopOpacity="0.2" />
           </linearGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -76,10 +76,10 @@ export function MissionMap({
               fill="url(#landGrad)"
               opacity="0.8"
             />
-            <text x="40" y="310" fill="#64748b" fontSize="10" fontFamily="system-ui">
+            <text x="40" y="310" fill="#626b7c" fontSize="10" fontFamily="var(--font-mono)" letterSpacing="0.5">
               Texas Gulf Coast
             </text>
-            <text x="620" y="300" fill="#64748b" fontSize="10" fontFamily="system-ui">
+            <text x="620" y="300" fill="#626b7c" fontSize="10" fontFamily="var(--font-mono)" letterSpacing="0.5">
               Indian Ocean
             </text>
             <ellipse
@@ -88,12 +88,12 @@ export function MissionMap({
               rx="55"
               ry="18"
               fill="none"
-              stroke="#1e3a5f"
+              stroke="#2b323f"
               strokeWidth="1"
               strokeDasharray="4 4"
-              opacity="0.6"
+              opacity="0.7"
             />
-            <text x="168" y="318" fill="#475569" fontSize="8" fontFamily="system-ui">
+            <text x="168" y="318" fill="#626b7c" fontSize="8" fontFamily="var(--font-mono)">
               Booster zone
             </text>
           </>
@@ -155,8 +155,8 @@ export function MissionMap({
               )}
               <circle
                 r={8 * scale}
-                fill={reached ? stageStrokeColor(status, upcoming) : "#1e293b"}
-                stroke={reached ? "#fff" : "#475569"}
+                fill={reached ? stageStrokeColor(status, upcoming) : "#11141b"}
+                stroke={reached ? "#fff" : "#2b323f"}
                 strokeWidth={reached ? 1.5 : 1}
                 filter={reached ? "url(#glow)" : undefined}
                 className="transition-all duration-500"
@@ -166,9 +166,10 @@ export function MissionMap({
                   <text
                     y={22}
                     textAnchor="middle"
-                    fill={reached ? "#e2e8f0" : "#64748b"}
+                    fill={reached ? "#eceef4" : "#626b7c"}
                     fontSize="9"
-                    fontFamily="system-ui"
+                    fontFamily="var(--font-mono)"
+                    letterSpacing="0.4"
                     fontWeight={reached ? "600" : "400"}
                   >
                     {node.label}
@@ -179,7 +180,7 @@ export function MissionMap({
                       textAnchor="middle"
                       fill={stageStrokeColor(status, upcoming)}
                       fontSize="8"
-                      fontFamily="system-ui"
+                      fontFamily="var(--font-mono)"
                     >
                       {stageStatusLabel(status)}
                     </text>
@@ -203,11 +204,11 @@ export function MissionMap({
       </svg>
 
       {!compact && !upcoming && (
-        <div className="absolute bottom-3 left-3 flex gap-3 text-[10px] text-slate-500">
-          <LegendDot color="#10b981" label="Success" />
-          <LegendDot color="#f59e0b" label="Partial" />
-          <LegendDot color="#ef4444" label="Failure" />
-          <LegendDot color="#334155" label="Not reached" />
+        <div className="absolute bottom-3 left-3 flex gap-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-faint)]">
+          <LegendDot color="#34d399" label="Success" />
+          <LegendDot color="#fbbf24" label="Partial" />
+          <LegendDot color="#f2564d" label="Failure" />
+          <LegendDot color="#3a4252" label="Not reached" />
         </div>
       )}
     </div>
@@ -219,9 +220,9 @@ function getSegmentColor(
   keys: (keyof FlightStages)[],
   upcoming?: boolean,
 ): string {
-  if (upcoming) return "#334155";
+  if (upcoming) return "#2b323f";
   const statuses = keys.map((k) => stages[k]).filter((s) => s !== "not-attempted");
-  if (statuses.length === 0) return "#334155";
+  if (statuses.length === 0) return "#2b323f";
   const worst = statuses.includes("failure")
     ? "failure"
     : statuses.includes("partial")
@@ -250,15 +251,15 @@ function PathSegment({
       <path
         d={d}
         fill="none"
-        stroke="#1e293b"
+        stroke="#1c212b"
         strokeWidth={compact ? 2 : 3}
         strokeLinecap="round"
-        opacity={0.5}
+        opacity={0.6}
       />
       <path
         d={d}
         fill="none"
-        stroke={active ? color : "#334155"}
+        stroke={active ? color : "#2b323f"}
         strokeWidth={compact ? 2 : 3}
         strokeLinecap="round"
         strokeDasharray={dashed ? "8 6" : undefined}

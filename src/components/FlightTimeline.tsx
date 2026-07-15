@@ -28,11 +28,11 @@ export function FlightTimeline({
             <div key={flight.id} className="flex items-stretch gap-4">
               {dividerLabel && (
                 <div className="flex flex-col items-center justify-center gap-2 px-1">
-                  <div className="h-full w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
-                  <span className="whitespace-nowrap text-[10px] font-medium uppercase tracking-wider text-slate-500 [writing-mode:vertical-lr]">
+                  <div className="h-full w-px bg-gradient-to-b from-transparent via-[color:var(--color-line-strong)] to-transparent" />
+                  <span className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-faint)] [writing-mode:vertical-lr]">
                     {dividerLabel}
                   </span>
-                  <div className="h-full w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
+                  <div className="h-full w-px bg-gradient-to-b from-transparent via-[color:var(--color-line-strong)] to-transparent" />
                 </div>
               )}
               <FlightCard

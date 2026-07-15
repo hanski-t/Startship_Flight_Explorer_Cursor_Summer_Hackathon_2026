@@ -12,42 +12,20 @@ export function ProgramProgressStrip({
   selectedFlightId,
   onSelectFlight,
 }: ProgramProgressStripProps) {
-  const flown = flights.filter((f) => !f.upcoming);
-  const successes = flown.filter((f) => f.outcome === "success").length;
-
   return (
-    <div className="rounded-xl border border-slate-700/60 bg-slate-900/50 p-4 backdrop-blur-sm">
-      <div className="mb-3 flex items-end justify-between gap-4">
-        <div>
-          <h2 className="text-sm font-semibold text-white">Program trajectory</h2>
-          <p className="text-xs text-slate-400">
-            {successes} of {flown.length} flights fully successful — taller bars
-            mean the flight got further through the stage sequence. Click a bar
-            to inspect that flight.
-          </p>
-        </div>
-        <div className="hidden text-right sm:block">
-          <p className="text-2xl font-bold text-emerald-400">
-            {Math.round((successes / flown.length) * 100)}%
-          </p>
-          <p className="text-[10px] uppercase tracking-wider text-slate-500">
-            Success rate
-          </p>
-        </div>
-      </div>
-
-      <div className="flex h-14 items-end gap-1">
+    <div>
+      <div className="flex h-20 items-end gap-1.5">
         {flights.map((flight, index) => {
           const isUpcoming = flight.upcoming === true;
           const height = isUpcoming
-            ? 20
+            ? 18
             : flight.outcome === "success"
               ? 100
               : flight.outcome === "partial"
-                ? 65
-                : 35;
+                ? 62
+                : 34;
           const color = isUpcoming
-            ? "#475569"
+            ? "var(--color-idle)"
             : stageStrokeColor(
                 flight.outcome === "success"
                   ? "success"
@@ -62,29 +40,36 @@ export function ProgramProgressStrip({
               key={flight.id}
               type="button"
               onClick={() => onSelectFlight(flight.id)}
-              className={`group relative flex-1 rounded-t-md transition-all duration-300 hover:opacity-100 ${
-                selected ? "ring-2 ring-sky-400 ring-offset-1 ring-offset-slate-950" : ""
-              } ${isUpcoming ? "opacity-50" : "opacity-85 hover:scale-y-105"}`}
-              style={{
-                height: `${height}%`,
-                backgroundColor: color,
-                animationDelay: `${index * 0.05}s`,
-              }}
+              className={`group relative flex h-full flex-1 flex-col justify-end rounded-sm outline-none transition-opacity ${
+                isUpcoming ? "opacity-60" : "opacity-90 hover:opacity-100"
+              }`}
               title={`${flight.id}: ${isUpcoming ? "Scheduled" : flight.outcome}`}
               aria-label={`Select ${flight.id}`}
               aria-pressed={selected}
             >
-              <span className="absolute -top-5 left-1/2 hidden -translate-x-1/2 text-[9px] font-medium text-slate-400 group-hover:block">
+              <span className="absolute -top-4 left-1/2 -translate-x-1/2 font-mono text-[9px] text-[color:var(--color-mute)] opacity-0 transition-opacity group-hover:opacity-100">
                 {flight.number}
               </span>
+              <span
+                className={`animate-bar-grow w-full rounded-sm transition-[box-shadow,outline] duration-200 ${
+                  selected
+                    ? "outline outline-2 outline-offset-2 outline-[color:var(--color-ink)]"
+                    : ""
+                } ${isUpcoming ? "border border-dashed border-[color:var(--color-line-strong)]" : ""}`}
+                style={{
+                  height: `${height}%`,
+                  backgroundColor: isUpcoming ? "transparent" : color,
+                  animationDelay: `${index * 0.04}s`,
+                }}
+              />
             </button>
           );
         })}
       </div>
 
-      <div className="mt-2 flex justify-between text-[10px] text-slate-600">
+      <div className="mt-3 flex items-center justify-between border-t border-[color:var(--color-line)] pt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-faint)]">
         <span>IFT-1</span>
-        <span>Program maturity →</span>
+        <span className="tracking-[0.24em]">Program maturity</span>
         <span>IFT-13</span>
       </div>
     </div>

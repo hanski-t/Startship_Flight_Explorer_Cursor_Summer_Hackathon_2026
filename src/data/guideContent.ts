@@ -26,15 +26,15 @@ export const BLOCK_GUIDE: BlockGuide[] = [
     id: "block-1",
     name: "Block 1",
     flights: "IFT-1 through IFT-6",
-    accentClass: "text-sky-400 ring-sky-500/30 bg-sky-500/10",
+    accentClass: "text-[color:var(--color-ink)]",
     description:
-      "The first Starship/Super Heavy hardware generation. These early flights focused on proving basic integrated ascent, hot-staging separation, reaching orbital velocity, and eventually recovering both stages with splashdowns — culminating in the first booster tower catch on IFT-5.",
+      "The first Starship/Super Heavy hardware generation. These early flights focused on proving basic integrated ascent, hot-staging separation, reaching orbital velocity, and eventually recovering both stages with splashdowns, culminating in the first booster tower catch on IFT-5.",
   },
   {
     id: "block-2",
     name: "Block 2",
     flights: "IFT-7 through IFT-11",
-    accentClass: "text-slate-300 ring-slate-400/30 bg-slate-400/10",
+    accentClass: "text-[color:var(--color-ink)]",
     description:
       "An upgraded ship design with lessons from Block 1 baked in. Block 2 introduced tougher reentry hardware and payload deployment tests, but also saw a stretch of ship failures during ascent before IFT-10 and IFT-11 turned the program around with back-to-back successes.",
   },
@@ -42,9 +42,9 @@ export const BLOCK_GUIDE: BlockGuide[] = [
     id: "block-3",
     name: "Block 3 (V3)",
     flights: "IFT-12 onward",
-    accentClass: "text-orange-400 ring-orange-500/30 bg-orange-500/10",
+    accentClass: "text-[color:var(--color-ink)]",
     description:
-      "A major redesign with Raptor 3 engines, a taller ship, and a new launch pad. Block 3 flights aim to push toward operational Starlink deployment and more reliable booster recovery — IFT-12 was the maiden V3 flight.",
+      "A major redesign with Raptor 3 engines, a taller ship, and a new launch pad. Block 3 flights aim to push toward operational Starlink deployment and more reliable booster recovery. IFT-12 was the maiden V3 flight.",
   },
 ];
 
@@ -59,7 +59,7 @@ export const STAGE_GUIDE: StageGuide[] = [
     key: "maxQ",
     label: "Max-Q",
     description:
-      "Maximum dynamic pressure — the point of greatest aerodynamic stress during ascent. The vehicle must hold structural integrity while throttling engines to limit loads.",
+      "Maximum dynamic pressure, the point of greatest aerodynamic stress during ascent. The vehicle must hold structural integrity while throttling engines to limit loads.",
   },
   {
     key: "stageSeparation",
@@ -77,7 +77,7 @@ export const STAGE_GUIDE: StageGuide[] = [
     key: "shipReentry",
     label: "Ship reentry",
     description:
-      "Starship re-enters the atmosphere after coasting in space. Heat shield tiles and flap control must survive hypersonic entry — where several early flights were lost.",
+      "Starship re-enters the atmosphere after coasting in space. Heat shield tiles and flap control must survive hypersonic entry, where several early flights were lost.",
   },
   {
     key: "splashdown",
@@ -91,29 +91,29 @@ export const OUTCOME_GUIDE: OutcomeGuide[] = [
   {
     id: "success",
     label: "Success",
-    colorClass: "bg-emerald-500",
+    colorClass: "bg-[color:var(--color-ok)]",
     description: "The stage fully met its objective.",
   },
   {
     id: "partial",
     label: "Partial",
-    colorClass: "bg-amber-500",
+    colorClass: "bg-[color:var(--color-warn)]",
     description:
       "The stage was reached but did not fully meet its goal (e.g. hard splashdown instead of a controlled catch).",
   },
   {
     id: "failure",
     label: "Failure",
-    colorClass: "bg-red-500",
+    colorClass: "bg-[color:var(--color-fail)]",
     description:
       "The vehicle was lost or destroyed at or before this stage.",
   },
   {
     id: "not-attempted",
     label: "Not attempted",
-    colorClass: "bg-slate-600",
+    colorClass: "bg-[color:var(--color-idle)]",
     description:
-      "The flight never reached this stage — usually because an earlier failure ended the mission.",
+      "The flight never reached this stage, usually because an earlier failure ended the mission.",
   },
 ];
 

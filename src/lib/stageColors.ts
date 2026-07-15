@@ -1,54 +1,58 @@
 import type { Outcome, StageStatus } from "../types/flight";
 
+/* All status styling resolves to the four semantic tokens defined in
+   index.css (--color-ok / --color-warn / --color-fail / --color-idle).
+   Color on this page means one thing only: flight-status data. */
+
 export function stageStatusBgMuted(status: StageStatus): string {
   switch (status) {
     case "success":
-      return "bg-emerald-500/20";
+      return "bg-[color-mix(in_srgb,var(--color-ok)_16%,transparent)]";
     case "partial":
-      return "bg-amber-500/20";
+      return "bg-[color-mix(in_srgb,var(--color-warn)_16%,transparent)]";
     case "failure":
-      return "bg-red-500/20";
+      return "bg-[color-mix(in_srgb,var(--color-fail)_16%,transparent)]";
     case "not-attempted":
-      return "bg-slate-800/50";
+      return "bg-[color:var(--color-panel-2)]";
   }
 }
 
 export function stageStatusConnector(status: StageStatus): string {
   switch (status) {
     case "success":
-      return "bg-emerald-500/60";
+      return "bg-[color-mix(in_srgb,var(--color-ok)_55%,transparent)]";
     case "partial":
-      return "bg-amber-500/60";
+      return "bg-[color-mix(in_srgb,var(--color-warn)_55%,transparent)]";
     case "failure":
-      return "bg-red-500/60";
+      return "bg-[color-mix(in_srgb,var(--color-fail)_55%,transparent)]";
     case "not-attempted":
-      return "bg-slate-700";
+      return "bg-[color:var(--color-line-strong)]";
   }
 }
 
 export function stageStatusColor(status: StageStatus): string {
   switch (status) {
     case "success":
-      return "bg-emerald-500";
+      return "bg-[color:var(--color-ok)]";
     case "partial":
-      return "bg-amber-500";
+      return "bg-[color:var(--color-warn)]";
     case "failure":
-      return "bg-red-500";
+      return "bg-[color:var(--color-fail)]";
     case "not-attempted":
-      return "bg-slate-600";
+      return "bg-[color:var(--color-idle)]";
   }
 }
 
 export function stageStatusTextColor(status: StageStatus): string {
   switch (status) {
     case "success":
-      return "text-emerald-400";
+      return "text-[color:var(--color-ok)]";
     case "partial":
-      return "text-amber-400";
+      return "text-[color:var(--color-warn)]";
     case "failure":
-      return "text-red-400";
+      return "text-[color:var(--color-fail)]";
     case "not-attempted":
-      return "text-slate-500";
+      return "text-[color:var(--color-faint)]";
   }
 }
 
@@ -68,11 +72,11 @@ export function stageStatusLabel(status: StageStatus): string {
 export function outcomeColor(outcome: Outcome): string {
   switch (outcome) {
     case "success":
-      return "bg-emerald-500/20 text-emerald-300 ring-emerald-500/40";
+      return "text-[color:var(--color-ok)] ring-[color-mix(in_srgb,var(--color-ok)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-ok)_12%,transparent)]";
     case "partial":
-      return "bg-amber-500/20 text-amber-300 ring-amber-500/40";
+      return "text-[color:var(--color-warn)] ring-[color-mix(in_srgb,var(--color-warn)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-warn)_12%,transparent)]";
     case "failure":
-      return "bg-red-500/20 text-red-300 ring-red-500/40";
+      return "text-[color:var(--color-fail)] ring-[color-mix(in_srgb,var(--color-fail)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-fail)_12%,transparent)]";
   }
 }
 
@@ -87,14 +91,10 @@ export function outcomeLabel(outcome: Outcome): string {
   }
 }
 
-export function vehicleAccent(vehicle: string): string {
-  if (vehicle.startsWith("Block 1")) {
-    return "text-sky-400 ring-sky-500/30";
-  }
-  if (vehicle.startsWith("Block 2")) {
-    return "text-slate-300 ring-slate-400/30";
-  }
-  return "text-orange-400 ring-orange-500/30";
+/* Vehicle generation is a category, not a status, so it is expressed
+   with typographic weight and neutral ink rather than a hue. */
+export function vehicleAccent(_vehicle: string): string {
+  return "text-[color:var(--color-mute)] ring-[color:var(--color-line-strong)]";
 }
 
 export function blockLabel(flightNumber: number): string | null {

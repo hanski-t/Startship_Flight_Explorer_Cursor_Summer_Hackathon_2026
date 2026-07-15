@@ -38,8 +38,10 @@ export function StageTracker({
           return (
             <div key={key} className="flex items-center">
               <div
-                className={`group relative flex h-7 w-7 items-center justify-center rounded-lg border border-white/5 ${
-                  reached ? stageStatusBgMuted(status) : "bg-slate-800/50"
+                className={`group relative flex h-7 w-7 items-center justify-center rounded-lg border border-[color:var(--color-line)] ${
+                  reached
+                    ? stageStatusBgMuted(status)
+                    : "bg-[color:var(--color-panel-2)]"
                 } ${reached && animated ? "animate-stage-pop" : ""}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
                 title={`${STAGE_LABELS[key]}: ${stageStatusLabel(status)}`}
@@ -50,12 +52,12 @@ export function StageTracker({
                   className={
                     reached
                       ? stageStatusTextColor(status)
-                      : "text-slate-600"
+                      : "text-[color:var(--color-faint)]"
                   }
                 />
-                <span className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 hidden w-44 -translate-x-1/2 rounded bg-slate-900 px-2 py-1.5 text-[10px] leading-snug text-slate-200 shadow-lg group-hover:block">
+                <span className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 hidden w-44 -translate-x-1/2 rounded-md border border-[color:var(--color-line-strong)] bg-[color:var(--color-panel-2)] px-2 py-1.5 text-[10px] leading-snug text-[color:var(--color-ink)] shadow-lg group-hover:block">
                   <span className="font-medium">{STAGE_LABELS[key]}</span>
-                  <span className="mt-0.5 block text-slate-400">
+                  <span className="mt-0.5 block text-[color:var(--color-mute)]">
                     {getStageGuide(key)?.description ?? stageStatusLabel(status)}
                   </span>
                 </span>
@@ -65,7 +67,7 @@ export function StageTracker({
                   className={`h-0.5 w-2 transition-colors duration-500 ${
                     reached && !upcoming
                       ? stageStatusConnector(status)
-                      : "bg-slate-700"
+                      : "bg-[color:var(--color-line)]"
                   }`}
                 />
               )}
@@ -81,9 +83,11 @@ export function StageTracker({
       {STAGE_KEYS.map((key, index) => {
         const status = stages[key];
         const reached = !upcoming && isStageReached(status);
-        const bgMuted = upcoming ? "bg-slate-800/50" : stageStatusBgMuted(status);
+        const bgMuted = upcoming
+          ? "bg-[color:var(--color-panel)]"
+          : stageStatusBgMuted(status);
         const textColor = upcoming
-          ? "text-slate-500"
+          ? "text-[color:var(--color-faint)]"
           : stageStatusTextColor(status);
         const isFailure = status === "failure" || status === "partial";
         const stageGuide = getStageGuide(key);
@@ -93,41 +97,47 @@ export function StageTracker({
             key={key}
             className={`flex items-center justify-between gap-4 rounded-lg px-3 py-2.5 transition-all duration-300 ${
               reached
-                ? "border border-white/5 bg-slate-800/40"
-                : "opacity-50"
+                ? "border border-[color:var(--color-line)] bg-[color:var(--color-panel)]"
+                : "opacity-45"
             } ${animated ? "animate-stage-slide-in" : ""}`}
             style={{ animationDelay: `${index * 0.08}s` }}
           >
             <div className="flex items-center gap-3">
               <div
-                className={`relative flex h-9 w-9 items-center justify-center rounded-lg ring-1 ring-white/10 ${bgMuted}`}
+                className={`relative flex h-9 w-9 items-center justify-center rounded-lg ring-1 ring-[color:var(--color-line)] ${bgMuted}`}
               >
                 <StageIcon
                   stage={key}
                   size={18}
-                  className={reached ? textColor : "text-slate-600"}
+                  className={
+                    reached ? textColor : "text-[color:var(--color-faint)]"
+                  }
                 />
                 {reached && (
                   <span
-                    className={`absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full ${upcoming ? "bg-slate-600" : stageStatusColor(status)} ring-2 ring-slate-900 ${
+                    className={`absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full ${
+                      upcoming
+                        ? "bg-[color:var(--color-idle)]"
+                        : stageStatusColor(status)
+                    } ring-2 ring-[color:var(--color-panel-2)] ${
                       isFailure ? "animate-pulse" : ""
                     }`}
                   />
                 )}
               </div>
               <div>
-                <span className="block text-sm font-medium text-slate-200">
+                <span className="block text-sm font-medium text-[color:var(--color-ink)]">
                   {STAGE_LABELS[key]}
                 </span>
                 {stageGuide && (
-                  <span className="mt-0.5 block text-xs leading-snug text-slate-500">
+                  <span className="mt-0.5 block text-xs leading-snug text-[color:var(--color-faint)]">
                     {stageGuide.description}
                   </span>
                 )}
               </div>
             </div>
             <span className={`text-sm font-semibold ${textColor}`}>
-              {upcoming ? "Pending" : reached ? stageStatusLabel(status) : "—"}
+              {upcoming ? "Pending" : reached ? stageStatusLabel(status) : "-"}
             </span>
           </li>
         );

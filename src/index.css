@@ -1,23 +1,55 @@
 @import "tailwindcss";
 
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* ── Mission-control design tokens ─────────────────────────────
+   Monochrome instrument canvas. The ONLY hues on the page are the
+   semantic flight-status colors (ok / warn / fail / idle), used
+   strictly as data encoding. Everything else is graphite + ink. */
+@theme {
+  --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-void: #07080b;
+  --color-panel: #0c0e13;
+  --color-panel-2: #11141b;
+  --color-line: #1c212b;
+  --color-line-strong: #2b323f;
+
+  --color-ink: #eceef4;
+  --color-mute: #9aa2b2;
+  --color-faint: #626b7c;
+
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-fail: #f2564d;
+  --color-idle: #3a4252;
+}
+
+html {
+  background-color: var(--color-void);
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
-  min-height: 100vh;
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
-  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Tabular, aligned numerals for all telemetry readouts */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
 }
 
 @keyframes mission-path-draw {
@@ -90,11 +122,22 @@ body {
 @keyframes hero-in {
   from {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.985);
   }
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -113,20 +156,29 @@ body {
   }
 }
 
-@keyframes twinkle {
+@keyframes drift {
   0%,
   100% {
-    opacity: 0.15;
+    opacity: 0.35;
   }
   50% {
-    opacity: 0.25;
+    opacity: 0.55;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0.04);
+  }
+  to {
+    transform: scaleY(1);
   }
 }
 
 .mission-path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: mission-path-draw 1.2s ease-out forwards;
+  animation: mission-path-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-rocket-float {
@@ -139,27 +191,36 @@ body {
 }
 
 .animate-stage-pop {
-  animation: stage-pop 0.4s ease-out both;
+  animation: stage-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-stage-slide-in {
-  animation: stage-slide-in 0.35s ease-out both;
+  animation: stage-slide-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-panel-in {
-  animation: panel-in 0.4s ease-out;
+  animation: panel-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animate-hero-in {
-  animation: hero-in 0.5s ease-out;
+  animation: hero-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-ping-slow {
   animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-.animate-twinkle {
-  animation: twinkle 8s ease-in-out infinite;
+.animate-drift {
+  animation: drift 9s ease-in-out infinite;
+}
+
+.animate-bar-grow {
+  transform-origin: bottom;
+  animation: bar-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -170,12 +231,18 @@ body {
   .animate-stage-slide-in,
   .animate-panel-in,
   .animate-hero-in,
+  .animate-rise-in,
   .animate-ping-slow,
-  .animate-twinkle {
+  .animate-drift,
+  .animate-bar-grow {
     animation: none;
   }
 
   .mission-path {
     stroke-dashoffset: 0;
+  }
+
+  .animate-bar-grow {
+    transform: none;
   }
 }

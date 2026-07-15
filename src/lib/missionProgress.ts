@@ -29,30 +29,30 @@ export function getMissionProgress(stages: FlightStages, upcoming?: boolean): nu
 }
 
 export function stageStrokeColor(status: StageStatus, upcoming?: boolean): string {
-  if (upcoming) return "#475569";
+  if (upcoming) return "#3a4252";
   switch (status) {
     case "success":
-      return "#10b981";
+      return "#34d399";
     case "partial":
-      return "#f59e0b";
+      return "#fbbf24";
     case "failure":
-      return "#ef4444";
+      return "#f2564d";
     case "not-attempted":
-      return "#334155";
+      return "#2b323f";
   }
 }
 
 export function stageGlowColor(status: StageStatus, upcoming?: boolean): string {
-  if (upcoming) return "rgba(71, 85, 105, 0.4)";
+  if (upcoming) return "rgba(58, 66, 82, 0.4)";
   switch (status) {
     case "success":
-      return "rgba(16, 185, 129, 0.6)";
+      return "rgba(52, 211, 153, 0.55)";
     case "partial":
-      return "rgba(245, 158, 11, 0.6)";
+      return "rgba(251, 191, 36, 0.55)";
     case "failure":
-      return "rgba(239, 68, 68, 0.6)";
+      return "rgba(242, 86, 77, 0.55)";
     case "not-attempted":
-      return "rgba(51, 65, 85, 0.3)";
+      return "rgba(43, 50, 63, 0.3)";
   }
 }
 

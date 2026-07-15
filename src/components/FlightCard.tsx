@@ -21,13 +21,13 @@ export function FlightCard({ flight, selected, onSelect }: FlightCardProps) {
       type="button"
       onClick={() => onSelect(flight.id)}
       aria-pressed={selected}
-      className={`group flex w-64 shrink-0 snap-start flex-col overflow-hidden rounded-xl border text-left transition-all duration-300 ${
+      className={`group flex w-64 shrink-0 snap-start flex-col overflow-hidden rounded-xl border text-left outline-none transition-[transform,border-color,background-color] duration-300 ${
         isUpcoming
-          ? "border-dashed border-slate-600/80 bg-slate-900/40 opacity-80 hover:opacity-100"
-          : "border-slate-700/80 bg-slate-900/70 hover:border-sky-500/40 hover:bg-slate-900 hover:shadow-lg hover:shadow-sky-500/5"
+          ? "border-dashed border-[color:var(--color-line-strong)] bg-[color:var(--color-panel)] opacity-75 hover:opacity-100"
+          : "border-[color:var(--color-line)] bg-[color:var(--color-panel)] hover:border-[color:var(--color-line-strong)] hover:bg-[color:var(--color-panel-2)]"
       } ${
         selected
-          ? "scale-[1.02] border-sky-400/60 ring-2 ring-sky-400/70 ring-offset-2 ring-offset-slate-950 shadow-xl shadow-sky-500/10"
+          ? "-translate-y-1 border-[color:var(--color-ink)]/70 ring-1 ring-[color:var(--color-ink)]/60"
           : ""
       }`}
     >
@@ -39,7 +39,7 @@ export function FlightCard({ flight, selected, onSelect }: FlightCardProps) {
           flightId={flight.id}
         />
         {!isUpcoming && (
-          <div className="absolute bottom-1 right-2 rounded bg-slate-950/80 px-1.5 py-0.5 text-[10px] font-medium text-slate-300 backdrop-blur-sm">
+          <div className="tnum absolute bottom-1.5 right-2 rounded border border-[color:var(--color-line)] bg-[color:var(--color-void)]/80 px-1.5 py-0.5 text-[10px] text-[color:var(--color-mute)] backdrop-blur-sm">
             {Math.round(progress * 100)}% profile
           </div>
         )}
@@ -48,15 +48,15 @@ export function FlightCard({ flight, selected, onSelect }: FlightCardProps) {
       <div className="flex flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-sky-200">
+            <h3 className="font-display text-lg font-semibold tracking-tight text-[color:var(--color-ink)]">
               {flight.id}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="tnum mt-0.5 text-xs text-[color:var(--color-faint)]">
               {formatDate(flight.date, isUpcoming)}
             </p>
           </div>
           {isUpcoming ? (
-            <span className="rounded-full bg-slate-700/60 px-2.5 py-0.5 text-xs font-medium text-slate-300 ring-1 ring-inset ring-slate-500/40">
+            <span className="rounded-full border border-[color:var(--color-line-strong)] px-2.5 py-0.5 text-xs font-medium text-[color:var(--color-mute)]">
               Scheduled
             </span>
           ) : (
@@ -65,7 +65,7 @@ export function FlightCard({ flight, selected, onSelect }: FlightCardProps) {
         </div>
 
         <span
-          className={`inline-flex w-fit rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ring-inset ${vehicleAccent(flight.vehicle)}`}
+          className={`inline-flex w-fit rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] ring-1 ring-inset ${vehicleAccent(flight.vehicle)}`}
         >
           {flight.vehicle}
         </span>
