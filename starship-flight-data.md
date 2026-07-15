@@ -1,0 +1,207 @@
+# Starship Flight Test Data (IFT-1 to IFT-12)
+
+Static reference data for the Starship Flight Explorer hackathon project. Stage status values: `success`, `partial`, `failure`, `not-attempted`.
+
+```json
+[
+  {
+    "id": "IFT-1",
+    "number": 1,
+    "date": "2023-04-20",
+    "vehicle": "Block 1",
+    "outcome": "failure",
+    "summary": "Maiden integrated flight. Multiple engine failures during ascent, lost thrust vector control, destroyed by flight termination system before stage separation.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "partial",
+      "stageSeparation": "failure",
+      "boosterLanding": "not-attempted",
+      "shipReentry": "not-attempted",
+      "splashdown": "not-attempted"
+    }
+  },
+  {
+    "id": "IFT-2",
+    "number": 2,
+    "date": "2023-11-18",
+    "vehicle": "Block 1",
+    "outcome": "partial",
+    "summary": "First successful hot-staging separation. Booster lost during boostback burn; ship reached near-orbital altitude before telemetry loss and destruction by flight termination system.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "failure",
+      "shipReentry": "failure",
+      "splashdown": "not-attempted"
+    }
+  },
+  {
+    "id": "IFT-3",
+    "number": 3,
+    "date": "2024-03-14",
+    "vehicle": "Block 1",
+    "outcome": "partial",
+    "summary": "Ship reached orbital velocity for the first time. Demonstrated in-space engine relight and payload door opening. Lost during reentry.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "failure",
+      "shipReentry": "failure",
+      "splashdown": "not-attempted"
+    }
+  },
+  {
+    "id": "IFT-4",
+    "number": 4,
+    "date": "2024-06-06",
+    "vehicle": "Block 1",
+    "outcome": "success",
+    "summary": "Major milestone: both booster and ship achieved controlled splashdowns in their target zones, validating the reusability approach for the first time.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "success",
+      "shipReentry": "success",
+      "splashdown": "success"
+    }
+  },
+  {
+    "id": "IFT-5",
+    "number": 5,
+    "date": "2024-10-13",
+    "vehicle": "Block 1",
+    "outcome": "success",
+    "summary": "First ever tower catch of the Super Heavy booster using the Mechazilla launch tower arms. Ship completed a controlled reentry and splashdown.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "success",
+      "shipReentry": "success",
+      "splashdown": "success"
+    }
+  },
+  {
+    "id": "IFT-6",
+    "number": 6,
+    "date": "2024-11-19",
+    "vehicle": "Block 1",
+    "outcome": "partial",
+    "summary": "Ship deployed a payload (a banana) and tested a Raptor relight in space. Booster skipped the tower catch and performed a water landing instead as a precaution.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "partial",
+      "shipReentry": "success",
+      "splashdown": "success"
+    }
+  },
+  {
+    "id": "IFT-7",
+    "number": 7,
+    "date": "2025-01-16",
+    "vehicle": "Block 2",
+    "outcome": "failure",
+    "summary": "First flight of the upgraded Block 2 ship. Booster caught successfully, but the ship suffered a propellant leak and fire in the aft section, destroying the vehicle during ascent.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "success",
+      "shipReentry": "failure",
+      "splashdown": "not-attempted"
+    }
+  },
+  {
+    "id": "IFT-8",
+    "number": 8,
+    "date": "2025-03-06",
+    "vehicle": "Block 2",
+    "outcome": "failure",
+    "summary": "Similar failure mode to Flight 7: an explosion in the ship's aft section during ascent destroyed the vehicle. Booster catch was successful.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "success",
+      "shipReentry": "failure",
+      "splashdown": "not-attempted"
+    }
+  },
+  {
+    "id": "IFT-9",
+    "number": 9,
+    "date": "2025-05-27",
+    "vehicle": "Block 2",
+    "outcome": "failure",
+    "summary": "First reflight of a Super Heavy booster. Booster completed ascent and boostback but broke apart during its landing burn. Ship reached orbit but lost attitude control during coast and disintegrated on reentry.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "failure",
+      "shipReentry": "failure",
+      "splashdown": "not-attempted"
+    }
+  },
+  {
+    "id": "IFT-10",
+    "number": 10,
+    "date": "2025-08-26",
+    "vehicle": "Block 2",
+    "outcome": "success",
+    "summary": "Turned the tide after three straight failures. Deployed Starlink simulators, demonstrated engine relight, and completed a controlled splashdown of the ship.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "success",
+      "shipReentry": "success",
+      "splashdown": "success"
+    }
+  },
+  {
+    "id": "IFT-11",
+    "number": 11,
+    "date": "2025-10-13",
+    "vehicle": "Block 2",
+    "outcome": "success",
+    "summary": "Second consecutive success and final flight of Block 2 hardware. Booster soft-landed in the Gulf; ship splashed down in the Indian Ocean after deploying Starlink simulators.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "success",
+      "shipReentry": "success",
+      "splashdown": "success"
+    }
+  },
+  {
+    "id": "IFT-12",
+    "number": 12,
+    "date": "2026-05-22",
+    "vehicle": "Block 3 (V3)",
+    "outcome": "partial",
+    "summary": "First flight of the redesigned Block 3 (V3) vehicle and new Raptor 3 engines from a new pad. Booster suffered an engine anomaly during boostback and had a hard splashdown instead of a controlled landing. Ship deployed 22 Starlink simulators and reached its splashdown zone despite an engine-out.",
+    "stages": {
+      "liftoff": "success",
+      "maxQ": "success",
+      "stageSeparation": "success",
+      "boosterLanding": "failure",
+      "shipReentry": "success",
+      "splashdown": "partial"
+    }
+  }
+]
+```
+
+## Notes for building
+
+- **Vehicle blocks:** Block 1 = IFT-1 to IFT-6, Block 2 = IFT-7 to IFT-11, Block 3/V3 = IFT-12 onward.
+- **Stage keys used:** `liftoff`, `maxQ`, `stageSeparation`, `boosterLanding`, `shipReentry`, `splashdown`. Drop or rename any of these in Cursor if a simpler 3-stage view is chosen instead.
+- **IFT-13** was scheduled for around July 16, 2026 as of this writing, not yet flown, so it's left out of the dataset. Can be added as an "upcoming" card if wanted.
+- All data reflects publicly reported outcomes as of July 2026 and may be simplified for the sake of the visual (e.g. "partial" is used loosely to mean "did not fully meet the stated objective for that stage").

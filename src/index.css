@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@keyframes mission-path-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rocket-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes flame-flicker {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes stage-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes stage-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.mission-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: mission-path-draw 1.2s ease-out forwards;
+}
+
+.animate-rocket-float {
+  animation: rocket-float 2s ease-in-out infinite;
+}
+
+.animate-flame {
+  animation: flame-flicker 0.3s ease-in-out infinite;
+  transform-origin: center top;
+}
+
+.animate-stage-pop {
+  animation: stage-pop 0.4s ease-out both;
+}
+
+.animate-stage-slide-in {
+  animation: stage-slide-in 0.35s ease-out both;
+}
+
+.animate-panel-in {
+  animation: panel-in 0.4s ease-out;
+}
+
+.animate-hero-in {
+  animation: hero-in 0.5s ease-out;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-path,
+  .animate-rocket-float,
+  .animate-flame,
+  .animate-stage-pop,
+  .animate-stage-slide-in,
+  .animate-panel-in,
+  .animate-hero-in,
+  .animate-ping-slow,
+  .animate-twinkle {
+    animation: none;
+  }
+
+  .mission-path {
+    stroke-dashoffset: 0;
+  }
+}
