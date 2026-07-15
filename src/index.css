@@ -175,61 +175,6 @@ body {
   }
 }
 
-@keyframes travel {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  6% {
-    opacity: 1;
-  }
-  92% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0.9;
-  }
-}
-
-@keyframes marker-ignite {
-  0% {
-    transform: scale(0.4);
-    opacity: 0;
-  }
-  70% {
-    transform: scale(1.15);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes label-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-  70% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-}
-
 .mission-path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
@@ -278,37 +223,17 @@ body {
   animation: bar-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.traj-rocket {
-  offset-rotate: auto;
-  animation: travel var(--travel-dur, 3.4s) cubic-bezier(0.5, 0, 0.5, 1)
-    var(--travel-delay, 0.2s) both;
-}
-
-.traj-marker {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: marker-ignite 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.traj-label {
-  animation: label-in 0.5s ease-out both;
-}
-
-.traj-pulse {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: pulse-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.traj-path-draw {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: mission-path-draw var(--draw-dur, 1.4s)
-    cubic-bezier(0.16, 1, 0.3, 1) var(--draw-delay, 0s) forwards;
-}
-
 .traj-zoom {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -322,26 +247,16 @@ body {
   .animate-rise-in,
   .animate-ping-slow,
   .animate-drift,
-  .animate-bar-grow,
-  .traj-marker,
-  .traj-label,
-  .traj-pulse,
-  .traj-path-draw {
+  .animate-bar-grow {
     animation: none;
   }
 
-  .mission-path,
-  .traj-path-draw {
+  .mission-path {
     stroke-dashoffset: 0;
   }
 
   .animate-bar-grow {
     transform: none;
-  }
-
-  .traj-rocket {
-    animation: none;
-    opacity: 0;
   }
 
   .traj-zoom {
